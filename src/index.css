@@ -62,6 +62,26 @@ button {
 .container-app .container-data .button:hover {
   background-color: #2950df;
 }
+.container-buttons .btn-editar {
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #ffd166;
+}
+
+.container-buttons .btn-editar:hover {
+  background-color: #f6c551;
+}
+
+.container-buttons .btn-eliminar {
+  padding: 5px 15px;
+  background-color: #ef476f;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+.container-buttons .btn-eliminar:hover {
+  background-color: #e2355d;
+}
 
 .list {
   list-style: none;

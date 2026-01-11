@@ -77,10 +77,13 @@ export default function App() {
                   </label>
 
                   <div className="container-buttons">
-                    <button>
-                      <ion-icon name="create-outline"></ion-icon>
+                    <button className="btn-editar">
+                      <ion-icon name="create-outline" size="small"></ion-icon>
                     </button>
-                    <button onClick={() => handleDeleteClick(todo.id)}>
+                    <button
+                      className="btn-eliminar"
+                      onClick={() => handleDeleteClick(todo.id)}
+                    >
                       <ion-icon name="trash-outline" size="small"></ion-icon>
                     </button>
                   </div>
