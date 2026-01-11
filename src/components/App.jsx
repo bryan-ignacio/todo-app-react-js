@@ -44,10 +44,12 @@ export default function App() {
             {todos.map((todo) => {
               return (
                 <li className="item" key={todo.id}>
-                  <input type="checkbox" />
-                  <label>{todo.title}</label>
-                  <button>Editar</button>
-                  <button>Eliminar</button>
+                  <input className="check" type="checkbox" />
+                  <label className="label">{todo.title}</label>
+                  <div className="container-buttons">
+                    <button>Editar</button>
+                    <button>Eliminar</button>
+                  </div>
                 </li>
               );
             })}

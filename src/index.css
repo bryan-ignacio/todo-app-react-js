@@ -45,6 +45,31 @@ body {
 .list .item {
   margin: 10px 5px;
   padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #fee440;
   border-radius: 5px;
+}
+
+.list .item .check {
+  padding: 10px;
+}
+
+.list .item .label {
+  margin: 0px 20px;
+  padding: 10px;
+}
+
+.list .item .container-buttons {
+  height: 2rem;
+  width: 7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.list .item .container-buttons button {
+  margin-right: 5px;
 }
