@@ -30,12 +30,37 @@ body {
   text-align: center;
   color: white;
 }
-.container-app .input {
-  margin: 5px;
+
+.container-data {
+  display: flex;
+  justify-content: center;
 }
 
-.container-app .button {
+.container-app .container-data .input {
   margin: 5px;
+  padding: 10px;
+  font-size: 18px;
+  width: 25vw;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.container-app .container-data .button {
+  margin: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #2e5bff;
+  color: white;
+}
+
+.container-app .container-data .button:hover {
+  background-color: #2950df;
 }
 
 .list {
@@ -48,8 +73,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fee440;
+  background-color: #fdf0d5;
   border-radius: 5px;
+}
+
+.list .item-done {
+  opacity: 0.75;
 }
 
 .list .item .check {
@@ -59,6 +88,8 @@ body {
 .list .item .label {
   margin: 0px 20px;
   padding: 10px;
+  flex: 1;
+  text-align: left;
 }
 
 .list .item .container-buttons {

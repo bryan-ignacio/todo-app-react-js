@@ -26,29 +26,63 @@ export default function App() {
     setText("");
   }
 
+  function handleDeleteClick(todoId) {
+    let newTodos = todos.filter((todo) => todo.id !== todoId);
+    setTodos(newTodos);
+  }
+
+  function handleCheckChange(e, todoId) {
+    let newTodo = todos.map((todo) => {
+      if (todo.id === todoId) {
+        return { ...todo, done: e.target.checked };
+      } else {
+        return todo;
+      }
+    });
+    setTodos(newTodo);
+  }
+
   return (
     <>
       <section className="container-app">
         <h1 className="title">Todo App</h1>
-        <input
-          className="input"
-          type="text"
-          value={text}
-          onChange={handleChange}
-        />
-        <button className="button" onClick={handleClick}>
-          +
-        </button>
+        <div className="container-data">
+          <input
+            className="input"
+            type="text"
+            value={text}
+            onChange={handleChange}
+          />
+          <button className="button" onClick={handleClick}>
+            +
+          </button>
+        </div>
         <div className="container-list">
           <ul className="list">
             {todos.map((todo) => {
               return (
-                <li className="item" key={todo.id}>
-                  <input className="check" type="checkbox" />
-                  <label className="label">{todo.title}</label>
+                <li
+                  className={`item ${todo.done ? "item-done" : ""}`}
+                  key={todo.id}
+                >
+                  <input
+                    className="check"
+                    type="checkbox"
+                    checked={todo.done}
+                    onChange={(e) => handleCheckChange(e, todo.id)}
+                  />
+
+                  <label className="label">
+                    {todo.done ? <del>{todo.title}</del> : todo.title}
+                  </label>
+
                   <div className="container-buttons">
-                    <button>Editar</button>
-                    <button>Eliminar</button>
+                    <button>
+                      <ion-icon name="create-outline"></ion-icon>
+                    </button>
+                    <button onClick={() => handleDeleteClick(todo.id)}>
+                      <ion-icon name="trash-outline" size="small"></ion-icon>
+                    </button>
                   </div>
                 </li>
               );
