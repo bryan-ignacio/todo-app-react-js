@@ -1,7 +1,50 @@
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-app {
+  width: 550px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: #2e3440;
+  border-radius: 10px;
+}
+
+.container-app .title {
+  margin: 5px;
+  text-align: center;
+  color: white;
+}
+.container-app .input {
+  margin: 5px;
+}
+
+.container-app .button {
+  margin: 5px;
+}
+
+.list {
+  list-style: none;
+}
+
+.list .item {
+  margin: 10px 5px;
+  padding: 10px;
+  background-color: #fee440;
+  border-radius: 5px;
 }
