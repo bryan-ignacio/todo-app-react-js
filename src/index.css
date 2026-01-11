@@ -50,6 +50,11 @@ button {
   font-family: inherit;
 }
 
+.container-list .sin-tareas {
+  margin: 20px 0px;
+  text-align: center;
+  color: white;
+}
 .container-app .container-data .button {
   margin: 5px;
   width: 50px;
@@ -81,6 +86,32 @@ button {
 }
 .container-buttons .btn-eliminar:hover {
   background-color: #e2355d;
+}
+
+.container-buttons .btn-guardar {
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #09fbbb;
+}
+
+.container-buttons .btn-guardar:hover {
+  background-color: #08eaae;
+}
+
+.container-buttons .btn-cancelar {
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #ef476f;
+  color: white;
+}
+
+.container-buttons .btn-cancelar:hover {
+  background-color: #e2355d;
+}
+
+.input-edit {
+  padding: 8px;
+  width: 300px;
 }
 
 .list {

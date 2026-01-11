@@ -12,6 +12,8 @@ let nextId = 0;
 export default function App() {
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+  const [editText, setEditText] = useState("");
 
   function handleChange(e) {
     setText(e.target.value);
@@ -42,57 +44,148 @@ export default function App() {
     setTodos(newTodo);
   }
 
-  return (
-    <>
-      <section className="container-app">
-        <h1 className="title">Todo App</h1>
-        <div className="container-data">
-          <input
-            className="input"
-            type="text"
-            value={text}
-            onChange={handleChange}
-          />
-          <button className="button" onClick={handleClick}>
-            +
-          </button>
-        </div>
-        <div className="container-list">
-          <ul className="list">
-            {todos.map((todo) => {
-              return (
-                <li
-                  className={`item ${todo.done ? "item-done" : ""}`}
-                  key={todo.id}
-                >
-                  <input
-                    className="check"
-                    type="checkbox"
-                    checked={todo.done}
-                    onChange={(e) => handleCheckChange(e, todo.id)}
-                  />
+  function handleEditarClick(todoId, title) {
+    setEditingId(todoId);
+    setEditText(title);
+  }
 
-                  <label className="label">
-                    {todo.done ? <del>{todo.title}</del> : todo.title}
-                  </label>
+  function handleSaveEdit(todoId) {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === todoId) {
+        return { ...todo, title: editText };
+      }
+      return todo;
+    });
+    setTodos(newTodos);
+    setEditingId(null);
+    setEditText("");
+  }
 
-                  <div className="container-buttons">
-                    <button className="btn-editar">
-                      <ion-icon name="create-outline" size="small"></ion-icon>
-                    </button>
-                    <button
-                      className="btn-eliminar"
-                      onClick={() => handleDeleteClick(todo.id)}
-                    >
-                      <ion-icon name="trash-outline" size="small"></ion-icon>
-                    </button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </section>
-    </>
-  );
+  function handleCancelEdit() {
+    setEditingId(null);
+    setEditText("");
+  }
+
+  if (todos.length === 0) {
+    return (
+      <>
+        <section className="container-app">
+          <h1 className="title">Todo App</h1>
+          <div className="container-data">
+            <input
+              className="input"
+              type="text"
+              value={text}
+              onChange={handleChange}
+            />
+            <button className="button" onClick={handleClick}>
+              +
+            </button>
+          </div>
+          <div className="container-list">
+            <h2 className="sin-tareas">No tienes tareas aún </h2>
+          </div>
+        </section>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <section className="container-app">
+          <h1 className="title">Todo App</h1>
+          <div className="container-data">
+            <input
+              className="input"
+              type="text"
+              value={text}
+              onChange={handleChange}
+            />
+            <button className="button" onClick={handleClick}>
+              +
+            </button>
+          </div>
+          <div className="container-list">
+            <ul className="list">
+              {todos.map((todo) => {
+                return (
+                  <li
+                    className={`item ${todo.done ? "item-done" : ""}`}
+                    key={todo.id}
+                  >
+                    <input
+                      className="check"
+                      type="checkbox"
+                      checked={todo.done}
+                      onChange={(e) => handleCheckChange(e, todo.id)}
+                    />
+
+                    {editingId === todo.id ? (
+                      <input
+                        className="input-edit"
+                        type="text"
+                        value={editText}
+                        onChange={(e) => setEditText(e.target.value)}
+                      />
+                    ) : (
+                      <label className="label">
+                        {todo.done ? <del>{todo.title}</del> : todo.title}
+                      </label>
+                    )}
+
+                    <div className="container-buttons">
+                      {editingId === todo.id ? (
+                        <>
+                          <button
+                            className="btn-guardar"
+                            onClick={() => handleSaveEdit(todo.id)}
+                          >
+                            <ion-icon
+                              name="checkmark-outline"
+                              size="small"
+                            ></ion-icon>
+                          </button>
+                          <button
+                            className="btn-cancelar"
+                            onClick={handleCancelEdit}
+                          >
+                            <ion-icon
+                              name="close-outline"
+                              size="small"
+                            ></ion-icon>
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            className="btn-editar"
+                            onClick={() =>
+                              handleEditarClick(todo.id, todo.title)
+                            }
+                          >
+                            <ion-icon
+                              name="create-outline"
+                              size="small"
+                            ></ion-icon>
+                          </button>
+                          <button
+                            className="btn-eliminar"
+                            onClick={() => handleDeleteClick(todo.id)}
+                          >
+                            <ion-icon
+                              name="trash-outline"
+                              size="small"
+                            ></ion-icon>
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </section>
+      </>
+    );
+  }
 }
